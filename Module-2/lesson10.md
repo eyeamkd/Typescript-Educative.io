@@ -63,3 +63,14 @@ interface userProfileInfo = Pick<GeneralUser, "name"|"age"|"gender">
 
 ## Omit Mapped Type 
 
+Name is self-explanatory,and opposite of pick, where you "omit" the properties that you don't want. 
+
+The syntax is same as that of Pick type.
+
+**Example**: From a generalUserObject, you omit the password hash before sending it onto the frontend 
+
+**Usage**: 
+
+``` 
+interface userObjectWithoutPassword = Omit< User, "passwordHash" | "password" >
+``` 
