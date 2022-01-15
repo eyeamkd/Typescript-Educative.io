@@ -14,4 +14,6 @@ type two{
 
 type intersectionType : one&two 
 
-Now the intesectionType has the properties of both the type "one" and "two"
+Now the intesectionType has the properties of both the type "one" and "two" 
+
+
