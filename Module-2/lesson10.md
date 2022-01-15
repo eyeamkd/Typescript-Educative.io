@@ -161,3 +161,22 @@ The type "HumanWithoutNickname" is formed by picking the properties of LivingThi
 Same thing as above with the HumanWithoutNickname2 but here there's an additional property of intelligenceScore
 
 
+## ReturnType Mapped Type 
+
+ReturnType is used on functions. ReturnType extracts the "return type" of a function and the type extracted can then be used as an interface. 
+
+**Example**:
+``` 
+function Greeting(name:string):string{
+    return `Hello, ${name}`; 
+} 
+
+type GreetingReturnType = ReturnType<typeof Greeting>
+
+``` 
+
+The GreetingReturnType would be nothing but a string type now 
+
+*For the functions that return values based on condtions, their type is inferred by Typescript* 
+
+**ReturnTypeFromPromise** is used to extract the return type from an asynchronous function, i.e a function that generally returns a Promise<T>, but this operator Mapped type gives the return type after resolving the promise
