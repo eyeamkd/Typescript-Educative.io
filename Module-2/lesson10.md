@@ -29,7 +29,7 @@ someVar : someType;
 
 newType = binaryType<someType> 
 
-### Mapped types can only be applied on types and the result of applying a mapped type is a type
+ *Mapped types can only be applied on types and the result of applying a mapped type is a type*
 
 ## Partial Mapped Type
 
@@ -45,4 +45,21 @@ Makes every item of the incoming type to be null
 
 type nullableType<Type>{
     [Property in keyof Type]: Type[Property] | null
-}
+} 
+
+## Pick Mapped Type 
+
+Add a selective layer on top of an existing interface so as to "pick" only the properties that are required
+
+**Example**: from a global user object, picking only those that are necessary
+
+**Usage**:
+interface GeneralUser{ 
+    ...all user objects 
+} 
+
+interface userProfileInfo = Pick<GeneralUser, "name"|"age"|"gender"> 
+
+
+## Omit Mapped Type 
+
