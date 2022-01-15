@@ -179,4 +179,18 @@ The GreetingReturnType would be nothing but a string type now
 
 *For the functions that return values based on condtions, their type is inferred by Typescript* 
 
-**ReturnTypeFromPromise** is used to extract the return type from an asynchronous function, i.e a function that generally returns a Promise<T>, but this operator Mapped type gives the return type after resolving the promise
+**ReturnTypeFromPromise** is used to extract the return type from an asynchronous function, i.e a function that generally returns a Promise<T>, but this operator Mapped type gives the return type after resolving the promise 
+
+
+## Custom Mapped Types 
+
+Creating custom mapped type
+
+1) NonNullable Type 
+
+type NonNullable<T> = [Property keyof T]: T[Property] extends null | undefined ? never : T  
+
+type ModifiedDate<T> = T & { 
+    dateModified: Date
+}
+
