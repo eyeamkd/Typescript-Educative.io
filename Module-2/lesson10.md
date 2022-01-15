@@ -75,7 +75,9 @@ The syntax is same as that of Pick type.
 interface userObjectWithoutPassword = Omit< User, "passwordHash" | "password" >
 ``` 
 ### Record Mapped Type 
-Record is just another name for "accumulation", i.e formation of a new type just by accumulation of other types. Something like union 
+Record is just another name for "accumulation", i.e formation of a new type just by accumulation of other **single** type. Something that builds or enforces an input into a type 
+
+*Record cannot be used for multiple types*
 
 **Example**:
 interface basicUserInfo = Record<"name" |"age"|"gender", string> 
@@ -95,3 +97,30 @@ interface User {
 
 interface strongType = Record<keyof User, string> 
 ``` 
+
+## Extract Mapped Type 
+
+Extract unlike record, acts as a union between several types. 
+Where you can "extract" the common type of properties among different interfaces and formulate a new type on top of it
+
+``` 
+interface Animal{
+    name:string;
+    age:number;
+    breed:string
+} 
+
+interface Human{
+    name:string;
+    occupation:string
+} 
+
+``` 
+
+Here Animal and Human are two different types, using the property **Extract** we can extract a common type "LivingThing" that shares common properties between these two types 
+
+interface LivingThing = Extract<keyof Animal, keyof Human> 
+
+Now we can enforce this type on a unknown input 
+
+response: LivingThing = Record<LivingThing, string>
