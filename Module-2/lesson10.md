@@ -123,4 +123,41 @@ interface LivingThing = Extract<keyof Animal, keyof Human>
 
 Now we can enforce this type on a unknown input 
 
-response: LivingThing = Record<LivingThing, string>
+response: LivingThing = Record<LivingThing, string> 
+
+## Exclude Mapped Type 
+
+Exclude does the same thing as Extract only with a small difference, here it removes the elements that were specified instead of looking for common elements 
+
+```
+interface Animal {
+    name: string;
+    gender: string;
+    sound: string;
+}
+interface Human {
+    name: string;
+    gender: string;
+    nickname: string;
+}
+
+interface Human2 {
+    name: string;
+    gender: boolean;
+    intelligenceScore: number
+}
+
+interface NoisyLivingSpecies{
+    sound: string;
+}
+type LivingThing = Exclude<keyof Animal, keyof NoisyLivingSpecies>;
+type HumanWithoutNickname = Pick<Human, LivingThing>;
+type HumanWithoutNickname2 = Pick<Human2, LivingThing>; 
+``` 
+In the example mentioned above, the "LivingThing" type is formed by excluding the common elements across the types Animal and NoisyLivingSpecies.
+
+The type "HumanWithoutNickname" is formed by picking the properties of LivingThing on the global type of "Human", which results in the interface consisting of name and gender 
+
+Same thing as above with the HumanWithoutNickname2 but here there's an additional property of intelligenceScore
+
+
