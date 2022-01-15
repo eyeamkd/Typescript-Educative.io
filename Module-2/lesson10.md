@@ -74,3 +74,24 @@ The syntax is same as that of Pick type.
 ``` 
 interface userObjectWithoutPassword = Omit< User, "passwordHash" | "password" >
 ``` 
+### Record Mapped Type 
+Record is just another name for "accumulation", i.e formation of a new type just by accumulation of other types. Something like union 
+
+**Example**:
+interface basicUserInfo = Record<"name" |"age"|"gender", string> 
+
+> The above line states that "name", "age", "gender" are property keys which will be a part of the strong type that is being created, and the values that are input for these property keys are of type string
+
+*Keep in mind that the second parameter in the syntax of "Record" is the input type and not the output type* 
+
+**Example2**
+
+```
+interface User {
+    name:string;
+    age:number;
+    gender:'M'|'F'|'O'
+}
+
+interface strongType = Record<keyof User, string> 
+``` 
